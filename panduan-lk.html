@@ -1,0 +1,130 @@
+<!doctype html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Panduan Mengerjakan LK · v19</title><link rel="stylesheet" href="stem-style.css">
+<style>
+.pl-toc{display:flex;flex-wrap:wrap;gap:8px;margin:0}.pl-toc a{display:inline-block;padding:9px 14px;border-radius:99px;background:#fff;border:1px solid #c9d7e5;text-decoration:none;font-weight:650;color:#173852}
+.pl-alur{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin:14px 0}
+.pl-alur div{background:#f3f7fa;border-top:5px solid #1c6070;border-radius:10px;padding:12px}
+.pl-alur b{display:block;color:#173852}.pl-alur small{display:block;color:#526578;margin-top:4px}
+.pl-mapel{border-left:8px solid var(--m,#1c6070)}
+.pl-mapel h2{margin-top:4px}.pl-tag{display:inline-block;font-size:13px;font-weight:800;border-radius:6px;padding:3px 10px;background:var(--m,#1c6070);color:#fff}
+.pl-langkah{counter-reset:l;list-style:none;padding:0;margin:10px 0}.pl-langkah li{counter-increment:l;position:relative;padding:8px 0 8px 44px;border-bottom:1px dashed #d5e0e9}
+.pl-langkah li::before{content:counter(l);position:absolute;left:0;top:6px;width:30px;height:30px;border-radius:50%;background:var(--m,#1c6070);color:#fff;display:grid;place-items:center;font-weight:800;font-size:15px}
+.pl-langkah li li{counter-increment:none;padding:3px 0;border:0}.pl-langkah li li::before{content:none}.pl-langkah ul{list-style:disc;padding-left:20px;margin:6px 0}
+.pl-file{font:600 14px ui-monospace,Consolas,monospace;background:#eef3f8;border-radius:5px;padding:1px 6px;white-space:nowrap}
+.pl-catatan{background:#fff6e8;border-left:5px solid #e3a33a;border-radius:8px;padding:10px 14px;margin:10px 0}
+.pl-bingkai{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 10px}.pl-bingkai span{border:1px solid #c9d7e5;border-radius:8px;padding:4px 9px;font-size:14px;background:#fff}
+.pl-faq dt{font-weight:750;color:#173852;margin-top:12px}.pl-faq dd{margin:4px 0 0}
+@media(max-width:760px){.pl-alur{grid-template-columns:1fr 1fr}}
+@media print{body>header{display:block!important;background:#fff!important;color:#173852!important;padding:0 0 6px!important}header h1{color:#173852!important;margin:0}header p{color:#526578!important}header nav,.pl-toc,.actions{display:none!important}body{background:#fff}.panel{border:1px solid #bbb;break-inside:auto;margin:10px 0}main{margin:0;padding:0}.pl-mapel{break-before:page}h2,h3{break-after:avoid}}
+</style></head>
+<body data-mode="panduan-lk"><header><nav><a href="index.html">Ekspedisi Kota Piksel</a><a href="mulai-di-sini.html">Panduan</a><a href="lkpd.html">Empat LK</a><a href="panduan-lk.html">Panduan LK</a><a href="generator-laporan.html">Gabungkan LK</a><a href="colab.html">Colab</a></nav><h1>Panduan Mengerjakan LK</h1><p>Untuk siswa dan guru · cara mengisi empat LK, berkas apa diunggah ke mana, dan cara menggabungkannya</p></header>
+<main>
+<section class="panel"><nav class="pl-toc" aria-label="Isi panduan"><a href="#mulai">1. Sebelum mulai</a><a href="#cara">2. Cara kerja LK</a><a href="#berkas">3. Peta berkas</a><a href="#ips">LK IPS</a><a href="#mat">LK Matematika</a><a href="#kka">LK KKA</a><a href="#ipa">LK IPA</a><a href="#gabungan">LK Gabungan</a><a href="#masalah">Masalah umum</a></nav>
+<h2>Alur singkat</h2>
+<div class="pl-alur"><div><b>Pekan 3 · P8</b>LK IPS<small>Tanpa unggahan berkas</small></div><div><b>Pekan 3 · P9</b>LK Matematika<small>Unggah CSV simulator</small></div><div><b>Pekan 4 · P11</b>LK KKA<small>Unggah .py dan 3 CSV Colab</small></div><div><b>Pekan 5 · P13</b>LK IPA<small>Unggah CSV sebaran</small></div><div><b>Pekan 6 · P14</b>LK Gabungan<small>Unggah 4 berkas hasil LK</small></div></div>
+<p>Setiap LK diselesaikan dalam pertemuannya, lalu disimpan sebagai <b>berkas hasil LK (.json)</b>. Keempat berkas itu digabung pada P14 menjadi laporan interaktif.</p>
+<div class="actions"><button class="secondary" type="button" onclick="window.print()">Cetak panduan ini</button><a class="secondary" href="lkpd.html">Buka LK</a></div></section>
+
+<section class="panel" id="mulai"><h2>1. Sebelum mulai (sekali saja, pada perangkat kelompok)</h2>
+<ol class="pl-langkah">
+<li>Buka <a href="lkpd.html">Empat LK</a>. Isi <b>Identitas bersama</b>: kode kelompok (misalnya <span class="pl-file">K03</span>), kelas, <b>kasus kelompok</b>, dan kode anggota (misalnya <span class="pl-file">K03A, K03B, K03C</span>). Jangan menulis nama lengkap.</li>
+<li><b>Kasus wajib dipilih.</b> LK belum dapat dikerjakan sebelum kasus dipilih, karena isi, pilihan, dan contoh pada LK menyesuaikan kasus kalian.</li>
+<li>Pakai <b>kode kelompok dan kasus yang sama di semua tempat</b>: keempat LK, Simulator Posisi Ponsel, dan sel pertama notebook Colab (<span class="pl-file">KELOMPOK = 'K03'</span>, <span class="pl-file">KASUS = 'osis'</span>). Kode yang berbeda membuat CSV Colab ditolak.</li>
+<li>Kerjakan LK pada <b>satu perangkat dan satu browser</b> per kelompok. Isian tersimpan otomatis di browser itu, tetapi bisa hilang bila riwayat browser dihapus. Karena itu, selalu <b>unduh hasil LK</b> di akhir pertemuan.</li>
+</ol>
+<p class="small">Kode kasus untuk notebook: osis · jualan · tanaman · ekskul · barang · kelas.</p></section>
+
+<section class="panel" id="cara"><h2>2. Cara kerja setiap LK</h2>
+<ol class="pl-langkah">
+<li><b>Pita bingkai.</b> LK terdiri atas beberapa bingkai bernomor (seperti pita film). Bingkai yang selesai diberi tanda ✓. Kalian boleh berpindah bingkai kapan saja.</li>
+<li><b>Bingkai Bahan</b> (LK Matematika, KKA, IPA): unggah berkas yang diminta lebih dahulu. Hasil pemeriksaan tampil <b>tepat di bawah tombol unggah</b>: <b>✓ diterima</b> atau <b>✗ belum diterima</b> beserta alasannya.</li>
+<li><b>Aktivitas.</b> Di setiap bingkai, lakukan aktivitasnya: memilih, memilah, menandai titik, mengurutkan, atau menghitung. Kotak kuning di bawah menunjukkan apa yang masih kurang.</li>
+<li><b>Penjelasan.</b> Tulis penjelasan kelompok minimal 25 karakter dengan kalimat sendiri. Tombol <i>pembuka kalimat</i> boleh dipakai untuk memulai.</li>
+<li><b>Bingkai Tim.</b> Setiap anggota menulis bagian yang ia jelaskan atau kerjakan. Guru akan menanyakannya.</li>
+<li><b>Simpan.</b> Di bagian bawah halaman:
+<ul><li><b>Unduh hasil LK</b> menyimpan <span class="pl-file">LK_IPS_K03.json</span> (dan seterusnya) ke folder <b>Unduhan/Downloads</b>. Berkas inilah yang dikumpulkan dan digabung.</li>
+<li><b>Unduh PDF LK</b> hanya untuk dibaca atau dicetak; PDF tidak dapat digabung.</li>
+<li><b>Lanjutkan dari berkas hasil LK (.json)</b> membuka kembali berkas .json untuk meneruskan pekerjaan di komputer lain atau setelah riwayat browser terhapus.</li></ul></li>
+</ol>
+<div class="pl-catatan">Keterangan "Belum lengkap: …" di bagian simpan adalah daftar yang masih kosong. Berkas boleh diunduh sebagai draf, tetapi LK Gabungan hanya menerima LK yang lengkap untuk laporan final.</div></section>
+
+<section class="panel" id="berkas"><h2>3. Peta berkas: dari mana, diunggah ke mana</h2>
+<div class="tablewrap"><table><thead><tr><th>Berkas</th><th>Dibuat di</th><th>Diunggah ke</th></tr></thead><tbody>
+<tr><td><span class="pl-file">posisi-simulasi-v19.csv</span></td><td>Simulator Posisi Ponsel → <i>Unduh CSV untuk Matematika</i> (P6/P9)</td><td>LK Matematika · bingkai Bahan</td></tr>
+<tr><td><span class="pl-file">hasil_uji_A.csv</span>, <span class="pl-file">hasil_uji_B.csv</span></td><td>Notebook Colab bagian 3 (P10)</td><td>LK KKA · slot Alternatif A dan slot Alternatif B</td></tr>
+<tr><td><span class="pl-file">program_kelompok.py</span></td><td>Notebook Colab bagian 7</td><td>LK KKA · File Python (atau tempel kodenya)</td></tr>
+<tr><td><span class="pl-file">hasil_uji.csv</span></td><td>Notebook Colab bagian 5 (P11)</td><td>LK KKA · slot uji final sepuluh JPEG</td></tr>
+<tr><td><span class="pl-file">sebaran_lokasi.csv</span></td><td>Notebook Colab bagian 6, <span class="pl-file">MODE = 'NYATA'</span> (P13)</td><td>LK IPA · bingkai Bahan</td></tr>
+<tr><td><span class="pl-file">LK_IPS_…json</span>, <span class="pl-file">LK_MAT_…json</span>, <span class="pl-file">LK_KKA_…json</span>, <span class="pl-file">LK_IPA_…json</span></td><td>Tombol <i>Unduh hasil LK</i> di setiap LK</td><td>LK Gabungan · langkah 2 (P14)</td></tr>
+<tr><td><span class="pl-file">Gabungan_K03.json</span></td><td>LK Gabungan → <i>Simpan cadangan JSON</i></td><td>LK Gabungan (untuk melanjutkan di komputer lain)</td></tr>
+</tbody></table></div>
+<p class="small">Foto asli kelompok tidak diunggah ke aplikasi LK. Foto hanya diunggah ke notebook Colab dan, bila diizinkan, ke galeri dokumentasi LK Gabungan (GPS otomatis dihapus).</p></section>
+
+<section class="panel pl-mapel" id="ips" style="--m:#a8661a"><span class="pl-tag">Pekan 3 · P8 · IPS</span><h2>LK IPS · Risiko Foto dan Kebutuhan Pengguna</h2>
+<p><b>Siapkan:</b> tiga foto asli kelompok (kode F01–F03) dan status GPS-nya dari <a href="bedah-foto.html">Bedah Foto</a> atau notebook; <a href="jejak-tokoh-x.html">Peta Jejak Lokasi</a> (fiktif); citra wilayah dari guru (catat sumber, wilayah, tanggal). <b>Tidak ada berkas yang diunggah.</b></p>
+<div class="pl-bingkai"><span>1 Penerima foto</span><span>2 Bukti atau dugaan</span><span>3 Membaca citra</span><span>4 Periksa tiga foto</span><span>5 Dua tindakan</span><span>6 Tiga rekomendasi</span><span>7 Tim</span></div>
+<ol class="pl-langkah">
+<li><b>Penerima foto:</b> pilih siapa penerima foto kelompok dan informasi yang harus tetap ada.</li>
+<li><b>Bukti atau dugaan:</b> pilah enam pernyataan. Buka Peta Jejak Lokasi, atur filter waktu dan jumlah titik, lalu catat zona, waktu, dan jumlah titik yang kalian amati.</li>
+<li><b>Membaca citra:</b> isi sumber dan wilayah citra, lalu pilih tepat tiga tutupan lahan.</li>
+<li><b>Periksa tiga foto:</b> untuk F01–F03, pilih status GPS, petunjuk visual yang terlihat, dan tingkat risikonya.</li>
+<li><b>Dua tindakan:</b> pilih dua tindakan perlindungan, lalu tulis kelebihan dan keterbatasannya.</li>
+<li><b>Tiga rekomendasi:</b> tulis tindakan, penerima, dan bukti pendukung. Rekomendasi ini menjadi dasar protokol di LK Gabungan.</li>
+</ol></section>
+
+<section class="panel pl-mapel" id="mat" style="--m:#5467c2"><span class="pl-tag">Pekan 3 · P9 · Matematika</span><h2>LK Matematika · Diagram dan Batas Kesimpulan</h2>
+<p><b>Siapkan:</b> CSV dari <a href="diagram-pencar.html">Simulator Posisi Ponsel</a>.</p>
+<ol class="pl-langkah">
+<li>Di simulator, periksa <b>Kode kelompok</b> (otomatis mengikuti LK bila LK sudah diisi di browser yang sama). Pilih <i>Set data model</i> dan <b>jangan mengganti set</b> di tengah pengamatan.</li>
+<li>Pilih kondisi <b>Area terbuka</b>, tekan <i>Mulai pengamatan virtual</i>, lalu <i>Tampilkan hasil lengkap</i>. Ulangi untuk <b>Dekat gedung</b> dan <b>Dalam kelas</b>.</li>
+<li>Tekan <b>Unduh CSV untuk Matematika</b>. Berkas <span class="pl-file">posisi-simulasi-v19.csv</span> masuk ke folder Unduhan.</li>
+<li>Di LK Matematika, bingkai <b>Bahan</b>: unggah CSV itu. Pastikan muncul <b>✓ diterima: … baris</b>.</li>
+</ol>
+<div class="pl-bingkai"><span>1 Bahan</span><span>2 Data dan kontrol</span><span>3 Beri label sumbu</span><span>4 Tunjuk titik bukti</span><span>5 Satelit dan simpangan</span><span>6 Prediksi untuk IPA</span><span>7 Boleh disimpulkan?</span><span>8 Tim</span></div>
+<div class="pl-catatan">Bingkai 6 <b>mengunci prediksi</b> urutan simpangan. Prediksi ini otomatis dipakai dan diuji di LK IPA, jadi kerjakan LK IPA di browser yang sama atau buka kembali berkas LK MAT terlebih dahulu.</div></section>
+
+<section class="panel pl-mapel" id="kka" style="--m:#1f7a6e"><span class="pl-tag">Pekan 4 · P10–P11 · KKA</span><h2>LK KKA · Program dan Bukti Pengujian</h2>
+<p><b>Siapkan dari notebook Colab:</b> <span class="pl-file">hasil_uji_A.csv</span> dan <span class="pl-file">hasil_uji_B.csv</span> (bagian 3, P10), <span class="pl-file">hasil_uji.csv</span> (bagian 5, P11), dan <span class="pl-file">program_kelompok.py</span> (bagian 7). Pakai juga <a href="bank-prompt.html">Bank Prompt AI dan Program Awal</a> sesuai kasus.</p>
+<ol class="pl-langkah">
+<li>Di notebook, isi <span class="pl-file">KELOMPOK</span> dan <span class="pl-file">KASUS</span> sama persis dengan LK, lalu jalankan bagian 1–3. Sebelum melihat hasil, tulis <b>dugaan</b> di bingkai 3 LK.</li>
+<li>Isi <span class="pl-file">PILIHAN = 'A'</span> atau <span class="pl-file">'B'</span> berdasarkan hasil uji. Tambahkan satu fitur kasus di BAGIAN 3 program (<span class="pl-file">fitur_kasus</span>) dengan bantuan AI, lalu jalankan bagian 4–5 sampai uji final 10/10, atau catat keterbatasannya.</li>
+<li>Di LK KKA, bingkai <b>Bahan</b>: unggah empat berkas ke slotnya masing-masing. CSV A tidak boleh masuk slot B, dan sebaliknya.</li>
+</ol>
+<div class="pl-bingkai"><span>1 Bahan</span><span>2 Kebutuhan pengguna</span><span>3 Dugaan sebelum uji</span><span>4 Bandingkan A dan B</span><span>5 Catatan uji dan perbaikan</span><span>6 Bantuan AI</span><span>7 Batas program</span><span>8 Tim</span></div>
+<div class="pl-catatan">Bingkai <b>Bantuan AI</b>: pilih contoh prompt, ganti setiap bagian <b>[dalam kurung siku]</b>, lalu catat prompt yang benar-benar dikirim. Kode tidak perlu ditempel ulang; cukup tulis "(kode program kami)". LK menolak prompt yang masih berisi [ ].</div></section>
+
+<section class="panel pl-mapel" id="ipa" style="--m:#3d7f3a"><span class="pl-tag">Pekan 5 · P13 · IPA</span><h2>LK IPA · Sebaran Lokasi Foto</h2>
+<p><b>Siapkan:</b> minimal 5 foto di setiap titik acuan (area terbuka, dekat gedung, dalam kelas) yang diambil pada P6 dengan ponsel yang sama dan lokasi kamera aktif.</p>
+<ol class="pl-langkah">
+<li>Di notebook bagian 6, pastikan <span class="pl-file">MODE = 'NYATA'</span>, lalu unggah foto per kondisi. Bila muncul <b>PERINGATAN … PERIKSA</b>, foto itu mungkin diambil di tempat lain; ganti foto tersebut lalu jalankan ulang.</li>
+<li>Unduh <span class="pl-file">sebaran_lokasi.csv</span>, lalu unggah di LK IPA bingkai <b>Bahan</b>.</li>
+</ol>
+<div class="pl-bingkai"><span>1 Bahan</span><span>2 Rancangan pengukuran</span><span>3 Besaran dan alat ukur</span><span>4 Uji prediksi</span><span>5 Ketidakpastian</span><span>6 Lingkaran risiko</span><span>7 Tim</span></div>
+<div class="pl-catatan">Data <b>LATIHAN</b> (foto sintetis guru) selalu ditolak karena bukan bukti nyata kelompok. Foto tanpa GPS tetap boleh; foto itu dicatat sebagai temuan dan tidak dihitung sebagai nol.</div></section>
+
+<section class="panel pl-mapel" id="gabungan" style="--m:#173852"><span class="pl-tag">Pekan 6 · P14</span><h2>LK Gabungan · Laporan Akhir</h2>
+<ol class="pl-langkah">
+<li>Buka <a href="generator-laporan.html">Gabungkan LK</a>. Isi judul karya dan nama sekolah. Nama anggota bersifat opsional; isi hanya bila sudah ada izin.</li>
+<li>Unggah keempat berkas <span class="pl-file">LK_….json</span> sekaligus, atau satu per satu pada kartu mapel. Status kartu: <b>Lengkap</b>, <b>Draf</b> (beserta daftar yang kurang), atau <b>Ditolak</b> (beserta alasannya). LK yang bermasalah cukup diperbaiki lalu diunggah ulang lewat tombol <b>Ganti</b> pada kartunya.</li>
+<li>Periksa daftar kesesuaian (langkah 3) dan rantai temuan MAT → IPA → KKA → IPS (langkah 4).</li>
+<li>Isi kesimpulan (boleh mulai dari tombol kerangka), risiko tersisa, protokol, uji baca, dan refleksi. Tambahkan foto dokumentasi bila ada izin.</li>
+<li>Tekan <b>Pratinjau</b>, lalu <b>Generate Laporan Interaktif</b>. Berkas HTML-nya dapat dibuka tanpa internet dan dipresentasikan (tekan P untuk Mode Presentasi). Unduh juga PDF dan ZIP bila diminta guru.</li>
+<li>Tekan <b>Simpan cadangan JSON</b> agar pekerjaan dapat dilanjutkan di komputer lain.</li>
+</ol></section>
+
+<section class="panel" id="masalah"><h2>Masalah umum</h2>
+<dl class="pl-faq">
+<dt>Berkas sudah dipilih, tetapi bingkai Bahan tetap "Unggah bahan …".</dt><dd>Baca pesan di bawah tombol unggah. Bila tertulis <b>✗ belum diterima</b>, alasannya ada di situ: kode kelompok atau kasus berbeda, kolom kurang, data LATIHAN, salah slot, atau jumlah foto kurang. Perbaiki di sumbernya (notebook atau simulator), unduh ulang CSV, lalu unggah lagi.</dd>
+<dt>"Kode kelompok di CSV: K01; di identitas LK: K03."</dt><dd>Di sel pertama notebook, ubah <span class="pl-file">KELOMPOK = 'K03'</span> lalu jalankan ulang bagian yang menghasilkan CSV itu. CSV simulator tetap diterima walau kodenya berbeda; yang muncul hanya catatan.</dd>
+<dt>"Kasus di CSV: osis; di identitas LK: jualan."</dt><dd>Samakan <span class="pl-file">KASUS</span> di notebook dengan kasus di LK, lalu jalankan ulang.</dd>
+<dt>Bingkai tidak berubah menjadi ✓.</dt><dd>Lihat kotak kuning di bawah bingkai. Biasanya ada aktivitas yang belum lengkap atau penjelasan yang kurang dari 25 karakter.</dd>
+<dt>Jawaban hilang atau pindah komputer.</dt><dd>Gunakan <b>Lanjutkan dari berkas hasil LK (.json)</b> dengan berkas yang pernah diunduh. Tanpa berkas itu, isian di browser lain tidak dapat dipulihkan.</dd>
+<dt>Prediksi MAT tidak muncul di LK IPA.</dt><dd>Kerjakan LK IPA di browser yang sama dengan LK MAT, atau buka dulu berkas LK MAT lewat <b>Lanjutkan dari berkas</b>. Bila tetap tidak ada, LK IPA menyediakan pilihan urutan prediksi.</dd>
+<dt>LK Gabungan menolak LK.</dt><dd>Keempat LK harus memakai kode kelompok, kelas, kasus, dan kode anggota yang sama. Alasan penolakan tertulis pada kartu mapel.</dd>
+</dl></section>
+
+<section class="panel"><h2>Untuk guru</h2>
+<ul><li>Pastikan setiap kelompok mencatat kode kelompok dan kasus di papan atau di buku.</li>
+<li>Akhir setiap pertemuan LK: periksa bahwa berkas <span class="pl-file">LK_….json</span> sudah diunduh, lalu kumpulkan lewat saluran sekolah (folder kelas atau Drive).</li>
+<li>Sebelum P14: setiap kelompok membawa keempat berkas hasil LK di satu perangkat.</li>
+<li>Bingkai Tim dan tanya jawab K5: tanyakan bagian yang ditulis setiap anggota.</li></ul></section>
+</main></body></html>
