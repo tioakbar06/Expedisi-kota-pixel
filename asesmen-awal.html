@@ -1,0 +1,74 @@
+<!doctype html><html lang="id"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Asesmen Awal · Tes, Angket, Swanilai</title><style>*{box-sizing:border-box}body{margin:0;background:#fff8ee;color:#1d3557;font:18px system-ui,sans-serif}main{max-width:1100px;margin:auto;padding:28px 16px}h1{font-size:clamp(28px,4vw,46px);margin:.4em 0}.card{background:white;border:2px solid #e0daca;border-radius:20px;padding:22px;margin:18px 0}button,a.btn{background:#2a9d8f;color:white;border:0;border-radius:12px;padding:13px 20px;font:700 17px system-ui;cursor:pointer;text-decoration:none;display:inline-block;margin:8px 6px 8px 0}button.alt{background:#1d3557}input,select{font:inherit;width:100%;padding:11px;border:2px solid #cfd8dd;border-radius:10px;margin:6px 0 16px}label{display:block;font-weight:650}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}.result{background:#e7f6f2;border:3px solid #2a9d8f;border-radius:16px;padding:18px;font-size:20px;margin-top:10px}.result.mid{background:#fdf0e2;border-color:#e18218}.result.low{background:#fde8e8;border-color:#c0392b}small,.note{font-size:15px;color:#52657c}fieldset{border:2px solid #e6eef2;border-radius:14px;margin:0 0 14px;padding:12px 14px}legend{font-weight:700;padding:0 6px}.opt{display:flex;gap:10px;align-items:flex-start;font-weight:500;margin:6px 0}.opt input{width:auto;margin:5px 0 0}.tabs{display:flex;flex-wrap:wrap;gap:8px}.tabs a{background:#e6eef2;color:#1d3557;border-radius:999px;padding:8px 14px;text-decoration:none;font-weight:700;font-size:16px}.tablewrap{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:16px}td,th{text-align:left;border-bottom:1px solid #ddd;padding:8px}:focus-visible{outline:4px solid #f4a261}</style>
+<main><a class="btn" href="index.html#peta">Beranda</a><a class="btn alt" href="mulai-di-sini.html">Panduan</a>
+<h1>Asesmen Awal</h1>
+<p>P1 KKA · P2 IPA · P3 IPS · P4 MAT. Tiga bagian terpisah: tes awal per mapel (2 butir), angket kebiasaan berbagi foto tanpa nama, dan swanilai koding. Hasil dipakai untuk menyusun kelompok heterogen dan pendampingan, bukan nilai akhir.</p>
+<nav class="tabs"><a href="#tes">1. Tes awal per mapel</a><a href="#angketcard">2. Angket anonim</a><a href="#swanilai">3. Swanilai koding</a></nav>
+
+<section class="card" id="tes"><h2>1. Tes awal per mapel</h2>
+<p class="note">Gunakan kode siswa (contoh K01A), bukan nama. Bila diisi bergiliran pada satu perangkat guru, hasil terkumpul di rekap di bawah. Bila diisi di perangkat masing-masing, siswa menunjukkan hasilnya kepada guru.</p>
+<form id="tesform"><div class="grid"><label>Kode siswa<input id="tkode" required maxlength="20" placeholder="K01A"></label><label>Kelas<input id="tkelas" required maxlength="30" placeholder="X-1"></label><label>Mapel<select id="tmapel"><option value="KKA">KKA (P1)</option><option value="IPA">IPA (P2)</option><option value="IPS">IPS (P3)</option><option value="MAT">Matematika (P4)</option></select></label></div><div id="titems"></div><button>Kirim jawaban</button></form><div id="thasil" role="status"></div>
+<details><summary><b>Rekap guru dan tindak lanjut</b></summary><p class="note">Kategori mengikuti perencanaan: skor &gt; 70% siap (tutor sebaya), 50–70% cukup siap (didampingi tutor sebaya), &lt; 50% belum siap (didampingi guru).</p><div class="tablewrap" id="trekap"></div><button id="texport">Unduh rekap tes (CSV)</button><button class="alt" id="tclear">Hapus rekap di perangkat ini</button></details>
+</section>
+
+<section class="card" id="angketcard"><h2>2. Angket anonim kebiasaan berbagi foto</h2>
+<p class="note">Disimpan sebagai hitungan pilihan tanpa nama, kelompok, atau waktu. Putaran akhir diisi lagi pada P14 untuk melihat perubahan kebiasaan.</p>
+<form id="angket"><label>Putaran<select id="putaran"><option value="awal">Awal (P1)</option><option value="akhir">Akhir (P14)</option></select></label><div id="questions"></div><button>Kirim jawaban anonim</button><p id="pesan" role="status"></p></form>
+<button class="alt" id="rekapbtn">Tampilkan/sembunyikan rekap</button><div id="rekap" hidden></div><button id="export">Unduh rekap anonim</button></section>
+
+<section class="card" id="swanilai"><h2>3. Swanilai koding untuk guru</h2>
+<p class="note">Terpisah dari angket anonim. Gunakan kode siswa.</p>
+<form id="koding"><div class="grid"><label>Kode siswa<input id="nama" required maxlength="20" placeholder="K01A"></label><label>Kelas<input id="kelas" required maxlength="30"></label></div><label>Pernyataan yang paling sesuai<select id="level"><option>Belum pernah menulis program</option><option>Pernah menjalankan program yang sudah jadi</option><option>Dapat mengubah sedikit kode</option><option>Dapat menulis program Python sederhana sendiri</option></select></label><button>Simpan swanilai</button><p id="pesank" role="status"></p></form>
+<button class="alt" id="lihatk">Tampilkan/sembunyikan daftar guru</button><div id="daftark" hidden></div><button id="exportk">Unduh swanilai (CSV)</button></section>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+function load(k,d){try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}}
+function save(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}}
+function dl(text,name,type){const u=URL.createObjectURL(new Blob([text],{type}));const a=document.createElement('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),1000)}
+const csv=rows=>'﻿'+rows.map(r=>r.map(x=>'"'+String(x).replace(/"/g,'""')+'"').join(',')).join('\n');
+const el=(t,txt)=>{const e=document.createElement(t);if(txt!==undefined)e.textContent=txt;return e};
+function table(head,rows){const t=el('table'),tr=el('tr');head.forEach(h=>tr.append(el('th',h)));t.append(tr);rows.forEach(r=>{const x=el('tr');r.forEach(c=>x.append(el('td',c)));t.append(x)});return t}
+
+/* 1. Tes awal per mapel */
+const TES={
+ KKA:[["Informasi lokasi GPS pada foto ponsel disimpan di mana?",["Di dalam piksel gambar","Di metadata EXIF berkas foto","Di nama berkas foto","Hanya di server media sosial"],1],
+      ["Jika GPS dihapus dari metadata foto, apakah lokasi pasti tidak dapat ditebak?",["Ya, pasti aman","Tidak, petunjuk visual dalam gambar masih dapat membocorkan lokasi","Ya, karena foto menjadi buram","Tidak, karena GPS akan muncul kembali sendiri"],1]],
+ IPA:[["Sinyal satelit merambat dengan kelajuan 3 × 10⁸ m/s selama 0,07 s. Jarak tempuhnya …",["2,1 × 10⁷ m","2,1 × 10⁹ m","4,3 × 10⁹ m","2,1 × 10⁵ m"],0],
+      ["Kondisi mana yang paling mungkin membuat posisi ponsel kurang tepat?",["Berdiri di lapangan terbuka","Berada di dalam ruangan bertembok dan beratap","Layar ponsel dalam keadaan terang","Baterai ponsel penuh"],1]],
+ IPS:[["Koordinat (−6,48; 106,85) berarti …",["6,48° Lintang Selatan dan 106,85° Bujur Timur","6,48° Lintang Utara dan 106,85° Bujur Barat","6,48° Bujur Timur dan 106,85° Lintang Selatan","6,48 km ke selatan dari ekuator"],0],
+      ["Pada citra satelit, area hijau rapat bertekstur kasar biasanya menunjukkan …",["Permukiman","Vegetasi atau hutan","Badan air","Jalan raya"],1]],
+ MAT:[["Pada diagram pencar dengan waktu di sumbu x dan simpangan di sumbu y, titik (30, 8) berarti …",["Pada detik ke-30 simpangannya 8 m","Pada detik ke-8 simpangannya 30 m","Ada 30 data bernilai 8","Rata-ratanya 38"],0],
+      ["Titik-titik pada diagram pencar cenderung naik ke kanan. Kesimpulan yang tepat adalah …",["x pasti menyebabkan y naik","Ada asosiasi positif, tetapi belum tentu sebab akibat","Tidak ada hubungan sama sekali","y menyebabkan x naik"],1]]};
+const KATEG=p=>p>70?['Siap','Tutor sebaya; tantangan pengayaan','']:p>=50?['Cukup siap','Didampingi tutor sebaya; kartu langkah','mid']:['Belum siap','Didampingi guru pada langkah inti','low'];
+let tesData=load('ekspedisi-tesawal-v19',[]);
+function renderItems(){const m=$('tmapel').value,box=$('titems');box.replaceChildren();TES[m].forEach(([q,opts],i)=>{const f=el('fieldset');f.append(el('legend',(i+1)+'. '+q));opts.forEach((o,j)=>{const l=el('label');l.className='opt';const r=el('input');r.type='radio';r.name='t'+i;r.value=j;r.required=true;l.append(r,el('span',o));f.append(l)});box.append(f)})}
+function renderTesRekap(){const e=$('trekap');e.replaceChildren();if(!tesData.length){e.append(el('p','Belum ada data pada perangkat ini.'));return}
+ e.append(table(['Kode','Kelas','Mapel','Skor','Persen','Kategori','Tindak lanjut'],tesData.map(r=>[r.kode,r.kelas,r.mapel,r.skor+'/2',r.persen+'%',r.kategori,r.tindak])))}
+$('tmapel').onchange=renderItems;
+$('tesform').onsubmit=e=>{e.preventDefault();const m=$('tmapel').value;let skor=0;const jaw=[];TES[m].forEach((it,i)=>{const v=Number(document.querySelector(`input[name="t${i}"]:checked`).value);jaw.push(v);if(v===it[2])skor++});
+ const persen=Math.round(skor/2*100),[kat,tl,cls]=KATEG(persen),r={kode:$('tkode').value.trim().toUpperCase(),kelas:$('tkelas').value.trim(),mapel:m,skor,persen,kategori:kat,tindak:tl};
+ const i=tesData.findIndex(x=>x.kode===r.kode&&x.kelas===r.kelas&&x.mapel===m);if(i<0)tesData.push(r);else tesData[i]=r;const ok=save('ekspedisi-tesawal-v19',tesData);
+ const h=$('thasil');h.replaceChildren();const d=el('div');d.className='result '+cls;d.append(el('b',`${r.kode} · ${m}: skor ${skor}/2 (${persen}%) · ${kat}`),el('br'),el('span','Tindak lanjut: '+tl));
+ TES[m].forEach((it,k)=>{d.append(el('br'),el('small',`Butir ${k+1}: ${jaw[k]===it[2]?'benar':'belum tepat — jawaban: '+it[1][it[2]]}`))});if(!ok)d.append(el('br'),el('small','Penyimpanan browser tidak tersedia; catat hasil ini.'));h.append(d);
+ $('tesform').reset();$('tmapel').value=m;renderItems();renderTesRekap()};
+$('texport').onclick=()=>dl(csv([['kode_siswa','kelas','mapel','skor','persen','kategori','tindak_lanjut'],...tesData.map(r=>[r.kode,r.kelas,r.mapel,r.skor,r.persen,r.kategori,r.tindak])]),'rekap-tes-awal-v19.csv','text/csv');
+$('tclear').onclick=()=>{if(confirm('Hapus semua rekap tes awal di perangkat ini? Unduh CSV lebih dahulu.')){tesData=[];save('ekspedisi-tesawal-v19',tesData);renderTesRekap()}};
+renderItems();renderTesRekap();
+
+/* 2. Angket anonim (putaran awal dan akhir) */
+const qs=[["Seberapa sering kamu membagikan foto dalam sehari?",["tidak pernah","1–2 kali","3–5 kali","> 5 kali"]],["Apakah izin lokasi kamera di ponselmu aktif?",["ya","tidak","tidak tahu"]],["Jalur apa yang paling sering kamu pakai untuk berbagi foto?",["aplikasi pesan","media sosial","surel","penyimpanan awan"]],["Apakah kamu pernah memeriksa informasi tersembunyi di dalam foto?",["ya","tidak"]],["Seberapa khawatir kamu bila lokasimu diketahui dari foto? (1 tidak khawatir – 4 sangat khawatir)",["1","2","3","4"]]];
+const kosong=()=>({jumlah:0,hitungan:qs.map(q=>q[1].map(()=>0))});
+let a=load('ekspedisi-angket2-v19',{awal:kosong(),akhir:kosong()});if(!a.awal||!a.akhir)a={awal:kosong(),akhir:kosong()};
+qs.forEach(([q,opts],i)=>{const l=el('label',(i+1)+'. '+q),s=el('select');s.id='q'+i;s.required=true;const z=el('option','Pilih jawaban');z.value='';s.append(z);opts.forEach((t,j)=>{const o=el('option',t);o.value=j;s.append(o)});l.append(s);$('questions').append(l)});
+function rekap(){const e=$('rekap');e.replaceChildren();['awal','akhir'].forEach(p=>{e.append(el('h3',`Putaran ${p}: ${a[p].jumlah} respons`));e.append(table(['Pertanyaan','Hitungan pilihan'],qs.map(([q,opts],i)=>[q,opts.map((t,j)=>t+': '+a[p].hitungan[i][j]).join(' · ')])))})}
+$('angket').onsubmit=e=>{e.preventDefault();const p=$('putaran').value;qs.forEach((_,i)=>a[p].hitungan[i][Number($('q'+i).value)]++);a[p].jumlah++;const ok=save('ekspedisi-angket2-v19',a);$('angket').reset();$('putaran').value=p;$('pesan').textContent=ok?'Jawaban anonim tersimpan. Silakan murid berikutnya.':'Penyimpanan browser tidak tersedia.';rekap()};
+$('rekapbtn').onclick=()=>{$('rekap').hidden=!$('rekap').hidden;rekap()};
+$('export').onclick=()=>dl(JSON.stringify(a,null,2),'rekap-angket-anonim-v19.json','application/json');
+
+/* 3. Swanilai koding */
+let k=load('ekspedisi-swanilai-v19',[]);
+function daftar(){const e=$('daftark');e.replaceChildren();e.append(k.length?table(['Kode','Kelas','Swanilai'],k.map(r=>[r.nama,r.kelas,r.level])):el('p','Belum ada data.'))}
+$('koding').onsubmit=e=>{e.preventDefault();const r={nama:$('nama').value.trim().toUpperCase(),kelas:$('kelas').value.trim(),level:$('level').value};if(!r.nama||!r.kelas)return;const i=k.findIndex(x=>x.nama===r.nama&&x.kelas===r.kelas);if(i<0)k.push(r);else k[i]=r;const ok=save('ekspedisi-swanilai-v19',k);$('koding').reset();$('pesank').textContent=ok?'Swanilai tersimpan untuk guru.':'Penyimpanan browser tidak tersedia.';daftar()};
+$('lihatk').onclick=()=>{$('daftark').hidden=!$('daftark').hidden;daftar()};
+$('exportk').onclick=()=>dl(csv([['kode_siswa','kelas','swanilai'],...k.map(r=>[r.nama,r.kelas,r.level])]),'swanilai-koding-v19.csv','text/csv');
+</script></html>

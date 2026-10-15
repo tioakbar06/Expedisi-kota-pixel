@@ -1,0 +1,69 @@
+<!doctype html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bank Prompt AI dan Program Awal · v19</title><link rel="stylesheet" href="stem-style.css">
+<style>
+.bp-case{display:flex;flex-wrap:wrap;gap:12px;align-items:end}.bp-case label{margin:0;min-width:240px}
+.bp-code{background:#0f2133;color:#e3edf5;border-radius:10px;padding:14px;overflow:auto;max-height:70vh;font:14px/1.5 ui-monospace,Consolas,monospace;white-space:pre;tab-size:4}
+.bp-map td:first-child{white-space:nowrap;font-weight:650}
+.bp-prompts{display:grid;gap:14px}
+.bp-card{border:1px solid #d5e0e9;border-left:6px solid var(--case,#1c6070);border-radius:12px;padding:14px 16px;background:#fff}
+.bp-card h3{margin:0 0 2px;font-size:19px}.bp-card .kapan{font-size:14px;color:#526578;margin:0 0 8px}
+.bp-text{white-space:pre-wrap;overflow-wrap:anywhere;background:#f5f8fa;border-radius:8px;padding:12px;margin:0 0 10px;font-size:16px}
+.bp-text mark{background:#fde8c4;color:#6d3c05;border-radius:4px;padding:0 2px}
+.bp-ok{font-size:14px;color:#11604f;margin-left:8px}
+.bp-fitur li{margin:4px 0}
+@media print{header nav,.actions,.bp-case,button{display:none!important}.bp-code{max-height:none;white-space:pre-wrap;color:#000;background:#fff;border:1px solid #999}.panel{break-inside:avoid-page}}
+</style></head>
+<body data-mode="prompt"><header><nav><a href="index.html">Ekspedisi Kota Piksel</a><a href="mulai-di-sini.html">Panduan</a><a href="lkpd.html#kka">LK KKA</a><a href="colab.html">Colab</a><a href="bank-prompt.html">Bank Prompt AI</a></nav><h1>Bank Prompt AI dan Program Awal</h1><p>Program Python dasar sebelum dikembangkan, ide fitur, dan prompt AI sesuai kasus kelompok · P10–P11 dan P14</p></header>
+<main><p id="message" role="status" aria-live="polite"></p>
+<section class="panel"><div class="bp-case"><label>Kasus kelompok<select id="kasus"></select></label><div class="actions"><button class="secondary" id="cetak" type="button">Cetak halaman ini</button></div></div><div id="kartu"></div></section>
+<section class="panel"><h2>1. Aturan memakai AI</h2><ol id="aturan"></ol><p class="small">Penggunaan AI dicatat di LK KKA (bingkai Bantuan AI) dan menjadi bagian Deklarasi Penggunaan Kecerdasan Artifisial.</p></section>
+<section class="panel"><h2>2. Program awal Python</h2><p>Program ini sama dengan bagian 4 notebook Colab dan berkas <code>03_COLAB_DAN_FOTO/program_awal.py</code>. Program sudah dapat dijalankan; kelompok mengisi <code>PILIHAN</code> dan menambah satu fitur di BAGIAN 3.</p>
+<div class="tablewrap"><table class="bp-map"><thead><tr><th>Bagian</th><th>Isi</th><th>Boleh diubah?</th></tr></thead><tbody>
+<tr><td>1 Pengaturan</td><td><code>PILIHAN</code> = 'A' atau 'B'</td><td>Ya, sesuai bukti uji dua alternatif</td></tr>
+<tr><td>2 Fungsi inti</td><td><code>lindungi_foto(src, dst)</code> membuat salinan aman satu foto</td><td>Nama dan parameter jangan diubah (dipakai pemeriksa K1–K3)</td></tr>
+<tr><td>3 Fitur kasus</td><td><code>fitur_kasus(src, dst)</code></td><td><b>Ya: tempat fitur kelompok</b></td></tr>
+<tr><td>4 Laporan</td><td><code>laporan(src, dst)</code>: GPS sebelum → sesudah</td><td>Boleh ditambah</td></tr>
+<tr><td>5 Satu folder</td><td><code>proses_folder(asal, hasil)</code></td><td>Boleh ditambah</td></tr>
+</tbody></table></div>
+<div class="actions" style="margin:12px 0"><button class="secondary" id="salinkode" type="button">Salin kode</button><button class="secondary" id="unduhkode" type="button">Unduh program_awal.py</button></div>
+<pre class="bp-code" id="kode" tabindex="0" aria-label="Kode program awal"></pre>
+<p class="small">Untuk dijalankan di komputer sendiri, program memerlukan <code>exif_lib.py</code> dari folder 03_COLAB_DAN_FOTO. Di Colab, cukup jalankan notebook dari bagian 1.</p></section>
+<section class="panel"><h2>3. Ide fitur untuk kasus ini</h2><p>Pilih satu ide, lalu sesuaikan dengan kebutuhan pengguna kalian. Ide sendiri boleh, selama memenuhi syarat.</p><ol class="bp-fitur" id="fitur"></ol><p id="syarat" class="check"></p></section>
+<section class="panel"><h2>4. Prompt untuk kasus ini</h2><p>Ganti setiap bagian <mark>[dalam kurung siku]</mark> sebelum mengirim prompt. Jalankan dan uji kode hasil AI pada 10 JPEG.</p><div class="bp-prompts" id="prompts"></div></section>
+<section class="panel"><h2>5. Catat di LK KKA</h2><ol><li><b>Prompt</b> yang benar-benar dikirim (setelah bagian [ ] diganti).</li><li><b>Bagian kode</b> yang berubah, misalnya <code>fitur_kasus</code>, baris penamaan berkas.</li><li><b>Cara memeriksa</b>: menjalankan kode, menguji 10 JPEG, membaca setiap baris, bertanya kepada guru, atau membandingkan dengan dokumentasi.</li></ol><div class="actions"><a class="secondary" href="lkpd.html#kka">Buka LK KKA</a><a class="secondary" href="colab.html">Panduan Colab</a></div></section>
+</main>
+<script src="stem-data.js"></script><script src="stem-kasus.js"></script><script src="stem-program.js"></script>
+<script>
+'use strict';
+(function(){
+  const $=id=>document.getElementById(id), D=window.STEM_DATA, K=window.STEM_KASUS, BP=window.STEM_PROMPT;
+  const h=(t,a={},...k)=>{const e=document.createElement(t);for(const[x,v]of Object.entries(a)){if(x==='class')e.className=v;else if(x==='text')e.textContent=v;else if(x.startsWith('on'))e.addEventListener(x.slice(2),v);else e.setAttribute(x,v)}e.append(...k);return e};
+  const msg=(t,bad)=>{$('message').textContent=t;$('message').className=bad?'message bad':'message'};
+  function salin(teks,btn){
+    const ok=()=>{const s=btn.nextElementSibling&&btn.nextElementSibling.classList.contains('bp-ok')?btn.nextElementSibling:btn.insertAdjacentElement('afterend',h('span',{class:'bp-ok',role:'status'}));s.textContent='Tersalin';setTimeout(()=>s.textContent='',2000)};
+    const cadangan=()=>{const ta=h('textarea');ta.value=teks;ta.style.position='fixed';ta.style.opacity='0';document.body.append(ta);ta.select();let berhasil=false;try{berhasil=document.execCommand('copy')}catch{}ta.remove();berhasil?ok():msg('Browser menolak menyalin otomatis. Pilih teks lalu tekan Ctrl+C.',true)};
+    if(navigator.clipboard&&window.isSecureContext)navigator.clipboard.writeText(teks).then(ok,cadangan);else cadangan();
+  }
+  const tandai=t=>{const p=h('p',{class:'bp-text'});t.split(/(\[[^\]]+\])/).forEach(s=>p.append(/^\[[^\]]+\]$/.test(s)?h('mark',{},s):document.createTextNode(s)));return p};
+  let awal='';try{awal=(JSON.parse(localStorage.getItem('foto-aman-v19-draft'))||{}).identity.case_id||''}catch{}
+  const q=new URLSearchParams(location.search).get('kasus');if(q&&K[q])awal=q;
+  $('kasus').append(h('option',{value:''},'— pilih kasus —'),...D.cases.map(c=>h('option',{value:c[0]},c[1])));$('kasus').value=K[awal]?awal:'';
+  $('aturan').append(...BP.aturan.map(a=>h('li',{},a)));
+  $('kode').textContent=window.STEM_PROGRAM_AWAL||'';
+  $('salinkode').onclick=e=>salin(window.STEM_PROGRAM_AWAL,e.currentTarget);
+  $('unduhkode').onclick=()=>{const b=new Blob([window.STEM_PROGRAM_AWAL],{type:'text/x-python'}),u=URL.createObjectURL(b),a=h('a',{href:u,download:'program_awal.py'});document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1000)};
+  $('cetak').onclick=()=>window.print();
+  function render(){
+    const id=$('kasus').value,k=K[id],c=D.cases.find(x=>x[0]===id);
+    $('kartu').replaceChildren();$('fitur').replaceChildren();$('prompts').replaceChildren();$('syarat').textContent='';
+    if(!k){$('kartu').append(h('p',{class:'casecard empty'},'Pilih kasus kelompok untuk melihat ide fitur dan prompt yang sesuai.'));return}
+    document.documentElement.style.setProperty('--case',k.warna);
+    $('kartu').append(h('div',{class:'casecard',style:'--case:'+k.warna},h('b',{},'Kasus '+k.nama),h('p',{},k.masalah),h('p',{class:'small'},'Kebutuhan: '+c[2]+'. Arah pengembangan: '+c[3])));
+    $('fitur').append(...k.fitur.map(f=>h('li',{},f)));
+    $('syarat').textContent='Syarat khusus kasus ini: '+k.syarat+' Informasi yang harus tetap ada: '+k.tetap.join(', ').toLowerCase()+'.';
+    BP.buat(k).forEach((p,i)=>{const b=h('button',{class:'secondary',type:'button'},'Salin prompt');b.onclick=()=>salin(p.teks,b);
+      $('prompts').append(h('article',{class:'bp-card'},h('h3',{},`${i+1}. ${p.judul}`),h('p',{class:'kapan'},p.kapan),tandai(p.teks),b))});
+    try{history.replaceState(null,'','?kasus='+id)}catch{}
+  }
+  $('kasus').onchange=render;render();
+})();
+</script></body></html>
