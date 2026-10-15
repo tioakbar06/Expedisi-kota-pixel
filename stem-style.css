@@ -114,3 +114,5 @@
 .lkx-bank summary{cursor:pointer;font-weight:700;color:#173852}
 .lkx-pcard{border-top:1px solid #e3eaf1;padding:10px 0}
 .lkx-ptext{white-space:pre-wrap;overflow-wrap:anywhere;font-size:15px;background:#f5f8fa;border-radius:8px;padding:10px;margin:6px 0}
+
+.upload-info{margin:-8px 0 14px;padding:10px 12px;border-radius:8px;font-size:15px;white-space:pre-wrap;overflow-wrap:anywhere}.upload-info:empty{display:none}.upload-info.ok{background:#e4f2ee;color:#11604f}.upload-info.bad{background:#fdeee8;color:#8a2f12;font-weight:600}
